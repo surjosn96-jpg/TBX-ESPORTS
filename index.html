@@ -3,23 +3,101 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TBX ESPORTS - Tournament Hub</title>
+    <title>TBX ESPORTS - Official Tournament Hub</title>
     <style>
-        body { font-family: Arial, sans-serif; background-color: #0f172a; color: #fff; text-align: center; margin: 0; padding: 20px; }
-        h1 { color: #38bdf8; }
-        .card { background: #1e293b; padding: 20px; margin: 20px auto; max-width: 400px; border-radius: 10px; border: 1px solid #334155; }
-        .btn { display: inline-block; background: #2563eb; color: #fff; padding: 10px 20px; border-radius: 5px; text-decoration: none; font-weight: bold; margin-top: 10px; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        body {
+            background-color: #0d1117;
+            color: #c9d1d9;
+            text-align: center;
+            padding: 20px;
+        }
+        header {
+            margin-top: 20px;
+            margin-bottom: 30px;
+        }
+        h1 {
+            color: #38bdf8;
+            font-size: 2.2rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 0 0 10px rgba(56, 189, 248, 0.5);
+        }
+        p.subtitle {
+            color: #8b949e;
+            font-size: 1rem;
+            margin-top: 5px;
+        }
+        .card {
+            background: #161b22;
+            border: 1px solid #30363d;
+            border-radius: 12px;
+            padding: 25px;
+            max-width: 450px;
+            margin: 0 auto;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+        }
+        .card h2 {
+            color: #f35626;
+            background-image: linear-gradient(45deg, #f35626, #feab3a);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+        .info {
+            font-size: 1.1rem;
+            margin: 10px 0;
+            color: #e6edf3;
+        }
+        .btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 12px 30px;
+            background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            box-shadow: 0 4px 15px rgba(139, 92, 246, 0.4);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(139, 92, 246, 0.6);
+        }
+        footer {
+            margin-top: 40px;
+            color: #484f58;
+            font-size: 0.9rem;
+        }
     </style>
 </head>
 <body>
-    <h1>🎮 Welcome to TBX ESPORTS 🏆</h1>
-    <p>আপনার পছন্দের ই-স্পোর্টস টুর্নামেন্টে অংশ নিন!</p>
-    
+
+    <header>
+        <h1>🎮 TBX ESPORTS 🏆</h1>
+        <p class="subtitle">আপনার পছন্দের ই-স্পোর্টস টুর্নামেন্টে অংশ নিন!</p>
+    </header>
+
     <div class="card">
         <h2>🔥 Free Fire Weekly Tournament</h2>
-        <p><strong>প্রাইজপুল:</strong> ৳১,০০০</p>
-        <p><strong>এন্ট্রি ফি:</strong> ফ্রি</p>
-        <a href="https://docs.google.com/forms/d/e/1FAIpQLSeef3IJLyvjEoTZ4W1u641appxNRF6bTATTwLLU0pscKDiebw/viewform?usp=publish-editor" class="btn">Register Now</a>
+        <p class="info"><strong>প্রাইজপুল:</strong> ৳১,০০০</p>
+        <p class="info"><strong>এন্ট্রি ফি:</strong> ফ্রি</p>
+        
+        <!-- আপনার Google Form Link নিচে পেস্ট করা আছে -->
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSe_YOUR_FORM_ID/viewform" class="btn" target="_blank">Register Now</a>
     </div>
+
+    <footer>
+        <p>&copy; 2026 TBX ESPORTS. All rights reserved.</p>
+    </footer>
+
 </body>
 </html>
