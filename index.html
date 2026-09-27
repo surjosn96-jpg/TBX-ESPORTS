@@ -12,15 +12,16 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
         body {
-    background-image: linear-gradient(rgba(13, 17, 23, 0.8), rgba(13, 17, 23, 0.8)), url('https://i.ibb.co/C3DxF9By/1000076049-d1af97.png');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    color: #c9d1d9;
-    text-align: center;
-    padding: 20px;
-}
+            background-color: #0d1117;
+            background-image: linear-gradient(rgba(13, 17, 23, 0.85), rgba(13, 17, 23, 0.85)), url('https://i.ibb.co/C3DxF9By/1000076049-d1af97.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            color: #c9d1d9;
+            text-align: center;
+            padding: 20px;
+        }
         header {
             margin-top: 20px;
             margin-bottom: 30px;
@@ -37,14 +38,20 @@
             font-size: 1rem;
             margin-top: 5px;
         }
+        .tournament-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            max-width: 450px;
+            margin: 0 auto;
+        }
         .card {
-            background: #161b22;
+            background: rgba(22, 27, 34, 0.9);
             border: 1px solid #30363d;
             border-radius: 12px;
             padding: 25px;
-            max-width: 450px;
-            margin: 0 auto;
             box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(5px);
         }
         .card h2 {
             color: #f35626;
@@ -61,7 +68,7 @@
         }
         .btn {
             display: inline-block;
-            margin-top: 20px;
+            margin-top: 15px;
             padding: 12px 30px;
             background: linear-gradient(90deg, #3b82f6, #8b5cf6);
             color: #ffffff;
@@ -70,15 +77,10 @@
             border-radius: 25px;
             font-size: 1.1rem;
             box-shadow: 0 4px 15px rgba(139, 92, 246, 0.4);
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
-        .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(139, 92, 246, 0.6);
         }
         footer {
             margin-top: 40px;
-            color: #484f58;
+            color: #8b949e;
             font-size: 0.9rem;
         }
     </style>
@@ -90,18 +92,55 @@
         <p class="subtitle">আপনার পছন্দের ই-স্পোর্টস টুর্নামেন্টে অংশ নিন!</p>
     </header>
 
-    <div class="card">
-        <h2>🔥 Free Fire Weekly Tournament</h2>
-        <p class="info"><strong>প্রাইজপুল:</strong> ৳১,০০০</p>
-        <p class="info"><strong>এন্ট্রি ফি:</strong> ফ্রি</p>
-        
-        <!-- আপনার Google Form Link নিচে পেস্ট করা আছে -->
-        <a href="https://docs.google.com/forms/d/e/1FAIpQLSe_YOUR_FORM_ID/viewform" class="btn" target="_blank">Register Now</a>
+    <div class="tournament-container" id="tournaments">
+        <p>টুর্নামেন্ট লোড হচ্ছে...</p>
     </div>
 
     <footer>
         <p>&copy; 2026 TBX ESPORTS. All rights reserved.</p>
     </footer>
 
+    <script>
+        // আপনার গুগল শিটের আসল CSV লিঙ্ক
+        const SHEET_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRd2dcPTS9PCjRk6bSdufsfR_WfEGX8afScr_bTjJNS0_0QqEfp42x_w5jd1r0EQimyiLOYOzB_W5eq/pub?output=csv';
+
+        async function fetchTournaments() {
+            try {
+                const response = await fetch(SHEET_CSV_URL);
+                const data = await response.text();
+                const rows = data.split('\n').slice(1);
+
+                const container = document.getElementById('tournaments');
+                container.innerHTML = '';
+
+                rows.forEach(row => {
+                    const columns = row.split(',');
+                    if (columns.length >= 4) {
+                        const title = columns[0].trim();
+                        const prize = columns[1].trim();
+                        const fee = columns[2].trim();
+                        const link = columns[3].trim();
+
+                        if(title) {
+                            const cardHtml = `
+                                <div class="card">
+                                    <h2>🔥 ${title}</h2>
+                                    <p class="info"><strong>প্রাইজপুল:</strong> ${prize}</p>
+                                    <p class="info"><strong>এন্ট্রি ফি:</strong> ${fee}</p>
+                                    <a href="${link}" class="btn" target="_blank">Register Now</a>
+                                </div>
+                            `;
+                            container.innerHTML += cardHtml;
+                        }
+                    }
+                });
+            } catch (error) {
+                console.error('Error loading tournaments:', error);
+                document.getElementById('tournaments').innerHTML = '<p>টুর্নামেন্ট তথ্য লোড করা যায়নি।</p>';
+            }
+        }
+
+        fetchTournaments();
+    </script>
 </body>
 </html>
